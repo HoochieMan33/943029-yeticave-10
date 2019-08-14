@@ -1,6 +1,52 @@
 <?php
 $is_auth = rand(0, 1);
 $user_name = "Сергей"; // укажите здесь ваше имя
+$lot_categories = [
+    10 => 'Доски и лыжи', 
+    20 => 'Крепления', 
+    30 => 'Ботинки', 
+    40 => 'Одежда', 
+    50 => 'Инструменты', 
+    60 => 'Разное'
+];
+$lots = [
+    [
+        'name'      => '2014 Rossignol District Snowboard',
+        'category'  => 10,
+        'price'     => 10999,
+        'image_url' => 'img/lot-1.jpg',
+    ],
+    [
+        'name'      => 'DC Ply Mens 2016/2017 Snowboard',
+        'category'  => 10,
+        'price'     => 159999,
+        'image_url' => 'img/lot-2.jpg',
+    ],
+    [
+        'name'      => 'Крепления Union Contact Pro 2015 года размер L/XL',
+        'category'  => 20,
+        'price'     => 8000,
+        'image_url' => 'img/lot-3.jpg',
+    ],
+    [
+        'name'      => 'Ботинки для сноуборда DC Mutiny Charocal',
+        'category'  => 30,
+        'price'     => 10999,
+        'image_url' => 'img/lot-4.jpg',
+    ],
+    [
+        'name'      => 'Куртка для сноуборда DC Mutiny Charocal',
+        'category'  => 40,
+        'price'     => 7500,
+        'image_url' => 'img/lot-5.jpg',
+    ],
+    [
+        'name'      => 'Маска Oakley Canopy',
+        'category'  => 60,
+        'price'     => 5400,
+        'image_url' => 'img/lot-6.jpg',
+    ],
+];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -52,9 +98,11 @@ $user_name = "Сергей"; // укажите здесь ваше имя
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">Имя категории</a>
-            </li>
+            <?php foreach ($lot_categories as $value) { ?>
+                <li class="promo__item promo__item--boards">
+                    <a class="promo__link" href="pages/all-lots.html"><?php print($value) ?></a>
+                </li>
+            <?php } ?>
         </ul>
     </section>
     <section class="lots">
@@ -63,24 +111,26 @@ $user_name = "Сергей"; // укажите здесь ваше имя
         </div>
         <ul class="lots__list">
             <!--заполните этот список из массива с товарами-->
-            <li class="lots__item lot">
-                <div class="lot__image">
-                    <img src="" width="350" height="260" alt="">
-                </div>
-                <div class="lot__info">
-                    <span class="lot__category">Название категории</span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html">Название товара</a></h3>
-                    <div class="lot__state">
-                        <div class="lot__rate">
-                            <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost">цена<b class="rub">р</b></span>
-                        </div>
-                        <div class="lot__timer timer">
-                            12:23
+            <?php foreach ($lots as $key => $value) { ?>
+                <li class="lots__item lot">
+                    <div class="lot__image">
+                        <img src=<?php print($value['image_url']) ?> width="350" height="260" alt="">
+                    </div>
+                    <div class="lot__info">
+                        <span class="lot__category"><?php print($lot_categories[$value['category']]) ?></span>
+                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?php print($value['name']) ?></a></h3>
+                        <div class="lot__state">
+                            <div class="lot__rate">
+                                <span class="lot__amount">Стартовая цена</span>
+                                <span class="lot__cost"><?php print($value['price']) ?><b class="rub">р</b></span>
+                            </div>
+                            <div class="lot__timer timer">
+                                12:23
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php } ?>
         </ul>
     </section>
 </main>
