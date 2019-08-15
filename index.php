@@ -49,9 +49,8 @@ $lots = [
 ];
 function price_opt($input) {
     $input = ceil($input);
-    if ($input >= 1000) $output = number_format($input, 0, '', ' ') . ' ₽';
-        else $output = $input . ' ₽';
-    return $output;
+    if ($input >= 1000) $input = number_format($input, 0, '', ' ');
+    return $input . ' ₽';
 }
 ?>
 <!DOCTYPE html>
