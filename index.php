@@ -2,7 +2,8 @@
 require('helpers.php');
 
 $is_auth = rand(0, 1);
-$user_name = "Сергей"; // укажите здесь ваше имя
+$user_name = 'Сергей'; // укажите здесь ваше имя
+$pageTitle = 'Главная';
 $lot_categories = [
     10 => 'Доски и лыжи', 
     20 => 'Крепления', 
@@ -56,7 +57,7 @@ function price_opt($input) {
 }
 
 $content = include_template('main.php', ['lot_categories' => $lot_categories, 'lots' => $lots]);
-print(include_template('layout.php', ['pageTitle' => 'Главная', 
+print(include_template('layout.php', ['pageTitle' => $pageTitle, 
                                     'pageContent' => $content, 
                                       'user_name' => $user_name, 
                                         'is_auth' => $is_auth] )
