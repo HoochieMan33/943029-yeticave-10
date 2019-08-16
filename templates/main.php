@@ -29,8 +29,8 @@
                                 <span class="lot__amount">Стартовая цена</span>
                                 <span class="lot__cost"><?php print(strip_tags(price_opt($value['price']))) ?></span>
                             </div>
-                            <div class="lot__timer timer">
-                                12:23
+                            <div class="lot__timer timer<?php if (get_dt_range($value['exp_date'])[0] == '00') print(' timer--finishing'); ?>">
+                                <?php print(get_dt_range($value['exp_date'])[0].':'.get_dt_range($value['exp_date'])[1]) ?>
                             </div>
                         </div>
                     </div>
