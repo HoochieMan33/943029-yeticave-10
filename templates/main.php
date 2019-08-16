@@ -30,7 +30,7 @@
                                 <span class="lot__cost"><?php print(strip_tags(price_opt($value['price']))) ?></span>
                             </div>
                             <div class="lot__timer timer">
-                                12:23
+                                <?php print(get_dt_range($value['exp_date'])[0].':'.get_dt_range($value['exp_date'])[1]) ?>
                             </div>
                         </div>
                     </div>

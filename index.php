@@ -18,42 +18,53 @@ $lots = [
         'category'  => 10,
         'price'     => 10999,
         'image_url' => 'img/lot-1.jpg',
+        'exp_date'   => '2019-08-17'
     ],
     [
         'name'      => 'DC Ply Mens 2016/2017 Snowboard',
         'category'  => 10,
         'price'     => 159999,
         'image_url' => 'img/lot-2.jpg',
+        'exp_date'  => '2019-08-18'
     ],
     [
         'name'      => 'Крепления Union Contact Pro 2015 года размер L/XL',
         'category'  => 20,
         'price'     => 8000,
         'image_url' => 'img/lot-3.jpg',
+        'exp_date'  => '2019-08-19'
     ],
     [
         'name'      => 'Ботинки для сноуборда DC Mutiny Charocal',
         'category'  => 30,
         'price'     => 10999,
         'image_url' => 'img/lot-4.jpg',
+        'exp_date'  => '2019-08-20'
     ],
     [
         'name'      => 'Куртка для сноуборда DC Mutiny Charocal',
         'category'  => 40,
         'price'     => 7500,
         'image_url' => 'img/lot-5.jpg',
+        'exp_date'  => '2019-08-21'
     ],
     [
         'name'      => 'Маска Oakley Canopy',
         'category'  => 60,
         'price'     => 5400,
         'image_url' => 'img/lot-6.jpg',
+        'exp_date'  => '2019-08-22'
     ],
 ];
+
 function price_opt($input) {
     $input = ceil($input);
     if ($input >= 1000) $input = number_format($input, 0, '', ' ');
     return $input . ' ₽';
+}
+
+function get_dt_range($input) {
+   return [str_pad(floor((strtotime($input)-strtotime('now'))/3600), 2, "0", STR_PAD_LEFT), date_interval_format(date_diff(date_create('now'),date_create($input)), '%I')];
 }
 
 $content = include_template('main.php', ['lot_categories' => $lot_categories, 'lots' => $lots]);
