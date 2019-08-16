@@ -64,11 +64,11 @@ function price_opt($input) {
 }
 
 function get_dt_range($input) {
-   $hours = floor((strtotime($input)-strtotime('now'))/3600); //получаем округленное количество часов до завершения аукциона
-   $minutes = date_interval_format(date_diff(date_create('now'),date_create($input)), '%I'); //получаем  количество минут до завершения аукциона
-   $hours = str_pad($hours, 2, "0", STR_PAD_LEFT); //добавляем 0 в начале, если часов меньше 10
-   $minutes = str_pad($minutes, 2, "0", STR_PAD_LEFT); //добавляем 0 в начале, если минут меньше 10
-   return [$hours, $minutes]; //возвращаем в виде массива
+   $hours   = floor((strtotime($input)-strtotime('now'))/3600);
+   $minutes = date_interval_format(date_diff(date_create('now'),date_create($input)), '%I');
+   $hours   = str_pad($hours, 2, "0", STR_PAD_LEFT);
+   $minutes = str_pad($minutes, 2, "0", STR_PAD_LEFT);
+   return [$hours, $minutes];
 }
 
 $content = include_template('main.php', ['lot_categories' => $lot_categories, 'lots' => $lots]);
