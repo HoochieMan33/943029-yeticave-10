@@ -1,4 +1,5 @@
 /* Заполняем таблицу с категориями */
+<<<<<<< HEAD
 INSERT INTO categories (NAME, CODE) VALUES ('Доски и лыжи', 'boards');
 INSERT INTO categories (NAME, CODE) VALUES ('Крепления', 'attachment');
 INSERT INTO categories (NAME, CODE) VALUES ('Ботинки', 'boots');
@@ -22,6 +23,31 @@ VALUES ('2019-08-15','Ботинки для сноуборда DC Mutiny Charoca
 INSERT INTO lots (date_create, NAME, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
 VALUES ('2019-08-16','Куртка для сноуборда DC Mutiny Charocal', 'Тёплая куртка', 'img/lot-5.jpg', 7500, '2019-08-21', 500, 1, 4);
 INSERT INTO lots (date_create, NAME, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+=======
+INSERT INTO categories (id, `name`, `code`) VALUES (1, 'Доски и лыжи', 'boards');
+INSERT INTO categories (id, `name`, `code`) VALUES (2, 'Крепления', 'attachment');
+INSERT INTO categories (id, `name`, `code`) VALUES (3, 'Ботинки', 'boots');
+INSERT INTO categories (id, `name`, `code`) VALUES (4, 'Одежда', 'clothing');
+INSERT INTO categories (id, `name`, `code`) VALUES (5, 'Инструменты', 'tools');
+INSERT INTO categories (id, `name`, `code`) VALUES (6, 'Разное', 'other');
+
+/* Заполняем таблицу с пользователями */
+INSERT INTO users (email, `name`, `password`, avatar, contact) VALUES ('ivan@yandex.ru', 'Иван', 'qwerty', 'img/ivan.jpg', '89001234567');
+INSERT INTO users (email, `name`, `password`, avatar, contact) VALUES ('oleg@yandex.ru', 'Олег', 'passpass', 'img/oleg.jpg', '89007654321');
+
+/* Заполняем таблицу с существующими объявлениями */
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+VALUES ('2019-08-12','2014 Rossignol District Snowboard', 'Сноуборд', 'img/lot-1.jpg', 10999, '2019-08-17', 100, 1, 1); 
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+VALUES ('2019-08-13','DC Ply Mens 2016/2017 Snowboard', 'Отличный сноуборд', 'img/lot-2.jpg', 159999, '2019-08-18', 1000, 2, 1); 
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+VALUES ('2019-08-14','Крепления Union Contact Pro 2015 года размер L/XL', 'Крепления', 'img/lot-3.jpg', 8000, '2019-08-19', 200, 2, 2); 
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+VALUES ('2019-08-15','Ботинки для сноуборда DC Mutiny Charocal', 'Хорошие ботинки', 'img/lot-4.jpg', 10999, '2019-08-20', 99, 1, 3); 
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+VALUES ('2019-08-16','Куртка для сноуборда DC Mutiny Charocal', 'Тёплая куртка', 'img/lot-5.jpg', 7500, '2019-08-21', 500, 1, 4);
+INSERT INTO lots (date_create, `name`, description, image_url, price_start, date_close, price_step, user_creator_id, category_id)
+>>>>>>> e8a12e63f444f27f6b71d75f463c840f6dac40cc
 VALUES ('2019-08-17','Маска Oakley Canopy', 'Защитная маска', 'img/lot-6.jpg', 5400, '2019-08-22', 300, 2, 6);
 
 /* Заполняем таблицу ставок */
@@ -36,6 +62,7 @@ SELECT * FROM categories;
 SELECT name FROM categories ORDER BY id;
 
 /* Запрос: получить самые новые, открытые лоты. Каждый лот должен включать название, стартовую цену, ссылку на изображение, название категории */
+<<<<<<< HEAD
 SELECT date_create, lots.name, price_start, image_url, categories.name FROM lots
 JOIN categories ON lots.category_id = categories.id 
 WHERE (date_create > NOW() - INTERVAL 5 DAY) AND date_close > NOW();
@@ -44,12 +71,28 @@ WHERE (date_create > NOW() - INTERVAL 5 DAY) AND date_close > NOW();
 SELECT lots.*, categories.name FROM lots
 JOIN categories ON lots.category_id = categories.id
 WHERE lots.id=5;
+=======
+SELECT date_create, l.name, price_start, image_url, c.name FROM lots l
+JOIN categories c ON l.category_id = c.id 
+WHERE (date_create > NOW() - INTERVAL 5 DAY) AND date_close > NOW();
+
+/* Запрос: показать лот по его id. Получите также название категории, к которой принадлежит лот */
+SELECT l.*, c.name FROM lots l
+JOIN categories c ON l.category_id = c.id
+WHERE l.id=5;
+>>>>>>> e8a12e63f444f27f6b71d75f463c840f6dac40cc
 
 /* Запрос: обновить название лота по его идентификатору */
 UPDATE lots SET name = 'Маска Champion'
 WHERE id = 7;
 
 /* Запрос: получить список ставок для лота по его идентификатору с сортировкой по дате. */
+<<<<<<< HEAD
 SELECT bets.* FROM lots
 JOIN bets ON bets.lot_id = lots.id
 WHERE lots.id = 6 ORDER BY bets.DATE;
+=======
+SELECT b.* FROM lots l
+JOIN bets b ON b.lot_id = l.id
+WHERE l.id = 6 ORDER BY b.date;
+>>>>>>> e8a12e63f444f27f6b71d75f463c840f6dac40cc
