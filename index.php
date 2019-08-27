@@ -22,13 +22,13 @@ function get_dt_range($input) {
 $link = mysqli_connect("localhost", "root", "", "yeticave");
 
 //получаем новые лоты
-$sql = "SELECT * FROM lots ORDER BY date_create DESC";
-$res = mysqli_query($link, $sql);
+$sql  = "SELECT * FROM lots ORDER BY date_create DESC";
+$res  = mysqli_query($link, $sql);
 $lots = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
 //получаем список категорий
-$sql = "SELECT * FROM categories ORDER BY name";
-$res = mysqli_query($link, $sql);
+$sql  = "SELECT * FROM categories ORDER BY name";
+$res  = mysqli_query($link, $sql);
 $temp_lot_categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
 foreach ($temp_lot_categories as $key => $value) {
     $lot_categories[$value['id']] = $temp_lot_categories[$key];
