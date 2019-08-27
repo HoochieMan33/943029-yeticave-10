@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `lots` (
   `date_close` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `price_step` decimal(9,2) NOT NULL,
   `user_creator_id` int(6) unsigned NOT NULL,
-  `user_winner_id` int(6) unsigned NOT NULL,
+  `user_winner_id` int(6) unsigned NULL DEFAULT NULL,
   `category_id` int(3) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_lots_categories` (`category_id`),
