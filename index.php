@@ -29,7 +29,10 @@ $lots = mysqli_fetch_all($res, MYSQLI_ASSOC);
 //получаем список категорий
 $sql = "SELECT * FROM categories ORDER BY name";
 $res = mysqli_query($link, $sql);
-$lot_categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
+$temp_lot_categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
+foreach ($temp_lot_categories as $key => $value) {
+    $lot_categories[$value['id']] = $temp_lot_categories[$key];
+}
 
 $content = include_template('main.php', ['lot_categories' => $lot_categories, 'lots' => $lots]);
 print(include_template('layout.php', ['pageTitle' => $pageTitle, 
