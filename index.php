@@ -11,14 +11,6 @@ function price_opt($input) {
     return $input . ' ₽';
 }
 
-function get_dt_range($input) {
-   $hours   = floor((strtotime($input)-strtotime('now'))/3600);
-   $minutes = date_interval_format(date_diff(date_create('now'),date_create($input)), '%I');
-   $hours   = str_pad($hours, 2, "0", STR_PAD_LEFT);
-   $minutes = str_pad($minutes, 2, "0", STR_PAD_LEFT);
-   return [$hours, $minutes];
-}
-
 $link = mysqli_connect("localhost", "root", "", "yeticave");
 
 //получаем новые лоты
