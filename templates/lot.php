@@ -37,24 +37,11 @@
   <main>
     <nav class="nav">
       <ul class="nav__list container">
-        <li class="nav__item">
-          <a href="all-lots.html">Доски и лыжи</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Крепления</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Ботинки</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Одежда</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Инструменты</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Разное</a>
-        </li>
+        <?php foreach ($categories as $value) { ?>
+          <li class="nav__item">
+            <a href="all-lots.html"><?php print($value["name"]); ?></a>
+          </li>
+        <?php } ?>
       </ul>
     </nav>
     <section class="lot-item container">
@@ -64,7 +51,7 @@
           <div class="lot-item__image">
             <img src="<?php print($lot[0]["image_url"]); ?>" width="730" height="548" alt="Сноуборд">
           </div>
-          <p class="lot-item__category">Категория: <span><?php print($category[0]["name"]); ?></span></p>
+          <p class="lot-item__category">Категория: <span><?php print($categories[$lot[0]["category_id"]]["name"]); ?></span></p>
           <p class="lot-item__description"><?php print($lot[0]["description"]); ?></p>
         </div>
         <div class="lot-item__right">
@@ -155,24 +142,11 @@
 <footer class="main-footer">
   <nav class="nav">
     <ul class="nav__list container">
-      <li class="nav__item">
-        <a href="all-lots.html">Доски и лыжи</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Крепления</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Ботинки</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Одежда</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Инструменты</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Разное</a>
-      </li>
+      <?php foreach ($categories as $value) { ?>
+        <li class="nav__item">
+          <a href="all-lots.html"><?php print($value["name"]); ?></a>
+        </li>
+      <?php } ?>
     </ul>
   </nav>
   <div class="main-footer__bottom container">
